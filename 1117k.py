@@ -28,9 +28,10 @@ def euclid_distance(a, b):
 def find_near_points(s, g): #実際に見つけるメソッド(返り値：近い点を記録したリストnear_objects)
     path_use = e_path[(s, g)] #今回選ばれたチェックポイント間の経路
     near_objects = [] #近い点を記録するリスト
-    for c_path_use in path_use[0]: #座標上で1マスずつ進んでいる
+    for point in path_use[0]: #座標上で1マスずつ進んでいる
         for node in nodes:
-            dis = euclid_distance(c_path_use, node)
+            px, py = point[1], point[0]
+            dis = euclid_distance((px, py), node)
             if dis < DISTANCE_LIMIT:
                 near_objects.append(node) #near_objectに追加
     near_objects_set = list(dict.fromkeys(near_objects)) #重複を削除
